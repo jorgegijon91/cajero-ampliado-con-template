@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'Playpen Sans'; /* El nombre que desees para la fuente */
+    src: url('../assets/fonts/Dancing_Script/DancingScript-VariableFont_wght.ttf') format('truetype'); /* Ruta al archivo de la fuente */
+}
+
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
@@ -15,6 +20,7 @@ body {
 
 h1 {
     color: #333;
+    font-family: 'Playpen Sans';
 }
 
 .menu {
