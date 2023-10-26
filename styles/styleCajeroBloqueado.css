@@ -1,0 +1,44 @@
+body {
+    background-color: #f44336;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    text-align: center;
+    color: #fff;
+}
+
+h1 {
+    font-size: 2rem;
+    margin: 0;
+}
+
+.cross {
+    font-size: 6rem;
+    margin-top: 20px;
+    position: relative;
+    display: inline-block;
+}
+
+.cross::before, .cross::after {
+    content: "";
+    position: absolute;
+    background-color: #fff;
+    width: 2px;
+    height: 100%;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.cross::before {
+    transform: rotate(45deg);
+}
+
+.cross::after {
+    transform: rotate(-45deg);
+}
