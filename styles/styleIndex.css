@@ -54,6 +54,7 @@ button {
     border: none;
     border-radius: 3px;
     cursor: pointer;
+    margin: 0 auto; /* Centrar horizontalmente */
 }
 
 button:hover {
