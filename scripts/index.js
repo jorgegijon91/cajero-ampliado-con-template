@@ -34,7 +34,8 @@ function depositar() {
     alert("Cantidad inválida. Intente de nuevo.");
   } else {
     saldo += deposito;
-    alert(`Se han depositado $${deposito.toFixed(2)}.`);
+    alert(`Se han depositado ${deposito.toFixed(2)} €`);
+    actualizarSaldoTemplate()
   }
 }
 
@@ -45,7 +46,8 @@ function retirar() {
     alert("Cantidad inválida o insuficiente. Intente de nuevo.");
   } else {
     saldo -= retiro;
-    alert(`Ha retirado $${retiro.toFixed(2)}.`);
+    alert(`Ha retirado ${retiro.toFixed(2)} €`);
+    actualizarSaldoTemplate()
   }
 }
 
@@ -58,7 +60,7 @@ function transferir() {
     const cuentaDestino = prompt("Ingrese el número de cuenta de destino:");
     console.log(`Se han transferido $${monto.toFixed(2)} a la cuenta ${cuentaDestino}.`);
     saldo -= monto;
-    mostrarSaldo();
+    actualizarSaldoTemplate()
   }
 }
 
@@ -73,11 +75,16 @@ function iniciarSesion() {
 
   if (pin === PIN_CORRECTO) {
     alert("Inicio de sesión exitoso.");
-    saldoTemplate.ine
+    actualizarSaldoTemplate()
   } else {
     alert("PIN incorrecto. El cajero se ha bloqueado.");
     window.location.replace("/templates/cajeroBloqueado.html");
   }
+}
+
+// Método para actualizar el saldo del usuario/a
+function actualizarSaldoTemplate(){
+  saldoTemplate.innerText = `${saldo} €`
 }
 
 
