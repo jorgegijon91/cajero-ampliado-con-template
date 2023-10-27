@@ -93,7 +93,8 @@ function actualizarSaldoTemplate(){
 
 // Función que valida si la cuenta bancaria introducida cumple con las normas y estándares internacionales
 function validarIBAN(iban) {
-  return /^[A-Z]{2}[0-9]{2}[A-Z0-9]{4}[0-9]{10}$/i.test(iban);
+  // Expresión regular para validar un IBAN completo
+  return /^[A-Z]{2}\d{2}[A-Z]{4}\d{10}$/i.test(iban.replace(/\s/g, ''));
 }
 
 
