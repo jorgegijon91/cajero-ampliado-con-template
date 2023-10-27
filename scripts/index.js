@@ -58,11 +58,11 @@ function transferir() {
     alert("Cantidad inválida o insuficiente. Intente de nuevo.");
   } else {
     const cuentaDestino = prompt("Ingrese el número de cuenta de destino:");
-    if (!validarIBAN(cuentaDestino)){
-      alert(`La cuenta ${cuentaDestino} no cumple con las normas y estándares internacionales`)
+    if (!validarIBAN(cuentaDestino)) {
+      alert(`La cuenta ${cuentaDestino} no es una cuenta bancaria válida`)
       return
     }
-    console.log(`Se han transferido $${monto.toFixed(2)} a la cuenta ${cuentaDestino}.`);
+    alert(`Se han transferido ${monto.toFixed(2)} € a la cuenta ${cuentaDestino}.`);
     saldo -= monto;
     actualizarSaldoTemplate()
   }
@@ -87,14 +87,16 @@ function iniciarSesion() {
 }
 
 // Función para actualizar el saldo del usuario/a
-function actualizarSaldoTemplate(){
+function actualizarSaldoTemplate() {
   saldoTemplate.innerText = `${saldo} €`
 }
 
+// ES1401823620010201553856
+
 // Función que valida si la cuenta bancaria introducida cumple con las normas y estándares internacionales
 function validarIBAN(iban) {
-  // Expresión regular para validar un IBAN completo
-  return /^[A-Z]{2}\d{2}[A-Z]{4}\d{10}$/i.test(iban.replace(/\s/g, ''));
+  var expresionRegular = /^(ES\d{22})$/;
+  return expresionRegular.test(iban);
 }
 
 
