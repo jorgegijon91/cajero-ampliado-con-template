@@ -8,7 +8,7 @@ window.addEventListener("load", iniciarSesion);
 
 // Declaración e inicialización de variables de scope global
 let saldo = 1000;
-const PIN_CORRECTO = "1234";
+let PIN_CORRECTO = "1234";
 let intentosRestantes = 3;
 
 // Obtén referencias a los elementos del menú por sus identificadores
@@ -17,13 +17,13 @@ const retirarBtn = document.getElementById("retirar");
 const transferirBtn = document.getElementById("transferir");
 const salirBtn = document.getElementById("salir");
 const saldoTemplate = document.getElementById("saldo");
-const cambiarPassword = document.getElementById("cambiarPassword");
+const cambiarPasswordBtn = document.getElementById("cambiarPassword");
 
 // Agrega manejadores de eventos de clic a los botones
 depositarBtn.addEventListener("click", depositar);
 retirarBtn.addEventListener("click", retirar);
 transferirBtn.addEventListener("click", transferir);
-cambiarPassword.addEventListener("cl")
+cambiarPasswordBtn.addEventListener("click", cambiarPassword);
 salirBtn.addEventListener("click", () => {
   alert("Gracias por utilizar el cajero. ¡Hasta luego!");
   window.location.replace("/templates/despedidaCajero.html");
@@ -89,15 +89,27 @@ function iniciarSesion() {
 }
 
 function cambiarPassword() {
-  const nuevoPIN = prompt("Ingrese su nueva contraseña (PIN):");
+  const pinActual = prompt("Ingrese su PIN actual:");
 
-  if (nuevoPIN !== null && nuevoPIN !== "") {
-    PIN_CORRECTO = nuevoPIN;
-    alert("Contraseña cambiada exitosamente. Su nueva contraseña es: " + PIN_CORRECTO);
+  if (pinActual === null) {
+    alert("Operación cancelada. No se ha realizado ningún cambio de contraseña.");
+    return;
+  }
+
+  if (pinActual === PIN_CORRECTO) {
+    const nuevoPIN = prompt("Ingrese su nueva contraseña (PIN):");
+
+    if (nuevoPIN !== null && nuevoPIN !== "") {
+      PIN_CORRECTO = nuevoPIN;
+      alert("Contraseña cambiada exitosamente. Su nueva contraseña es: " + PIN_CORRECTO);
+    } else {
+      alert("No se ha realizado ningún cambio de contraseña.");
+    }
   } else {
-    alert("No se ha realizado ningún cambio de contraseña.");
+    alert("PIN actual incorrecto. No se ha realizado ningún cambio de contraseña.");
   }
 }
+
 
 // Función para actualizar el saldo del usuario/a
 function actualizarSaldoTemplate() {
@@ -111,6 +123,3 @@ function validarIBAN(iban) {
   var expresionRegular = /^(ES\d{22})$/;
   return expresionRegular.test(iban);
 }
-
-
-
