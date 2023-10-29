@@ -17,11 +17,13 @@ const retirarBtn = document.getElementById("retirar");
 const transferirBtn = document.getElementById("transferir");
 const salirBtn = document.getElementById("salir");
 const saldoTemplate = document.getElementById("saldo");
+const cambiarPassword = document.getElementById("cambiarPassword");
 
 // Agrega manejadores de eventos de clic a los botones
 depositarBtn.addEventListener("click", depositar);
 retirarBtn.addEventListener("click", retirar);
 transferirBtn.addEventListener("click", transferir);
+cambiarPassword.addEventListener("cl")
 salirBtn.addEventListener("click", () => {
   alert("Gracias por utilizar el cajero. ¡Hasta luego!");
   window.location.replace("/templates/despedidaCajero.html");
@@ -83,6 +85,17 @@ function iniciarSesion() {
   } else {
     alert("PIN incorrecto. El cajero se ha bloqueado.");
     window.location.replace("/templates/cajeroBloqueado.html");
+  }
+}
+
+function cambiarPassword() {
+  const nuevoPIN = prompt("Ingrese su nueva contraseña (PIN):");
+
+  if (nuevoPIN !== null && nuevoPIN !== "") {
+    PIN_CORRECTO = nuevoPIN;
+    alert("Contraseña cambiada exitosamente. Su nueva contraseña es: " + PIN_CORRECTO);
+  } else {
+    alert("No se ha realizado ningún cambio de contraseña.");
   }
 }
 
