@@ -59,6 +59,7 @@ function transferir() {
   if (isNaN(monto) || monto <= 0 || monto > saldo) {
     alert("Cantidad inválida o insuficiente. Intente de nuevo.");
   } else {
+    
     const cuentaDestino = prompt("Ingrese el número de cuenta de destino:");
     if (!validarIBAN(cuentaDestino)) {
       alert(`La cuenta ${cuentaDestino} no es una cuenta bancaria válida`)
@@ -120,6 +121,6 @@ function actualizarSaldoTemplate() {
 
 // Función que valida si la cuenta bancaria introducida cumple con las normas y estándares internacionales
 function validarIBAN(iban) {
-  var expresionRegular = /^(ES\d{22})$/;
+  let expresionRegular = /^(ES\d{22})$/;
   return expresionRegular.test(iban);
 }
