@@ -17,17 +17,49 @@ const retirarBtn = document.getElementById("retirar");
 const transferirBtn = document.getElementById("transferir");
 const salirBtn = document.getElementById("salir");
 const saldoTemplate = document.getElementById("saldo");
-const cambiarPasswordBtn = document.getElementById("cambiarPassword");
+
+// Referencias al nuevo formulario para el cambio del password
+const passwordDelFormulario = document.getElementById('passwordDelFormulario');
+const pinInput = document.getElementById('pinInput');
+const mensajeResultante = document.getElementById('mensajeResultante');
 
 // Agrega manejadores de eventos de clic a los botones
 depositarBtn.addEventListener("click", depositar);
 retirarBtn.addEventListener("click", retirar);
 transferirBtn.addEventListener("click", transferir);
-cambiarPasswordBtn.addEventListener("click", cambiarPassword);
 salirBtn.addEventListener("click", () => {
   alert("Gracias por utilizar el cajero. ¡Hasta luego!");
   window.location.replace("/templates/despedidaCajero.html");
 });
+
+// Cambiar contraseña aplicado al template: intro y click
+passwordDelFormulario.addEventListener('submit', cambiarContraseñaTemplate);
+  
+// Función para cambiar la contraseña
+function cambiarContraseñaTemplate(formulario){
+  formulario.preventDefault(); // Evita que se recargue la página al enviar el formulario
+
+  const pinActual = pinInput.value;
+
+  if (pinActual === '') {
+    mensajeResultante.textContent = 'Operación cancelada. No se ha realizado ningún cambio de contraseña.';
+    pinInput.value = '';
+    return;
+  }
+
+  if (pinActual === PIN_CORRECTO) {
+    const nuevoPIN = prompt("Ingrese su nueva contraseña (PIN):");
+
+    if (nuevoPIN !== null && nuevoPIN !== "") {
+      PIN_CORRECTO = nuevoPIN;
+      mensajeResultante.textContent = "Contraseña cambiada exitosamente. No la olvide.";
+    } else {
+      mensajeResultante.textContent = "No se ha realizado ningún cambio de contraseña.";
+    }
+  } else {
+    mensajeResultante.textContent = "PIN actual incorrecto. No se ha realizado ningún cambio de contraseña.";
+  }
+}
 
 // Función para depositar saldo
 function depositar() {
