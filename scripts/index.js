@@ -20,7 +20,9 @@ const saldoTemplate = document.getElementById("saldo");
 
 // Referencias al nuevo formulario para el cambio del password
 const passwordDelFormulario = document.getElementById('passwordDelFormulario');
-const pinInput = document.getElementById('pinInput');
+const pinInput1 = document.getElementById('pinInput1');
+const pinInput2 = document.getElementById('pinInput2');
+const pinInput3 = document.getElementById('pinInput3');
 const mensajeResultante = document.getElementById('mensajeResultante');
 const cambiarPass = document.getElementById('cambiarPassword');
 
@@ -38,35 +40,24 @@ passwordDelFormulario.addEventListener('submit', cambiarContraseñaTemplate);
 cambiarPass.addEventListener('click', mostrarYocultar);
 
 // Función para mostrar y ocultar el formulario
-function mostrarYocultar(){
+function mostrarYocultar() {
   passwordDelFormulario.classList.toggle('mostrado');
 }
-  
+
 // Función para cambiar la contraseña
-function cambiarContraseñaTemplate(formulario){
+function cambiarContraseñaTemplate(formulario) {
   formulario.preventDefault(); // Evita que se recargue la página al enviar el formulario
 
-  const pinActual = pinInput.value;
-
-  if (pinActual === '') {
-    mensajeResultante.textContent = 'Operación cancelada. No se ha realizado ningún cambio de contraseña.';
-    pinInput.value = '';
-    return;
-  }
-
-  if (pinActual === PIN_CORRECTO) {
-    const nuevoPIN = prompt("Ingrese su nueva contraseña (PIN):");
-
-    if (nuevoPIN !== null && nuevoPIN !== "") {
-      PIN_CORRECTO = nuevoPIN;
-      mensajeResultante.textContent = "Contraseña cambiada exitosamente. No la olvide.";
-    } else {
-      mensajeResultante.textContent = "No se ha realizado ningún cambio de contraseña.";
-    }
+  if (pinInput1.value === "" || pinInput1.value === null) {
+    mensajeResultante.innerText = "Introduce el PIN actual."
+  } else if (pinInput1.value === PIN_CORRECTO && pinInput2.value === pinInput3.value) {
+    PIN_CORRECTO = pinInput2.value
+    mensajeResultante.innerText = "PIN actualizado correctamente."
   } else {
-    mensajeResultante.textContent = "PIN actual incorrecto. No se ha realizado ningún cambio de contraseña.";
+    mensajeResultante.innerText = "Repita el nuevo PIN para confirmarlo."
   }
 }
+
 
 // Función para depositar saldo
 function depositar() {
@@ -98,7 +89,7 @@ function transferir() {
   if (isNaN(monto) || monto <= 0 || monto > saldo) {
     alert("Cantidad inválida o insuficiente. Intente de nuevo.");
   } else {
-    
+
     const cuentaDestino = prompt("Ingrese el número de cuenta de destino:");
     if (!validarIBAN(cuentaDestino)) {
       alert(`La cuenta ${cuentaDestino} no es una cuenta bancaria válida`)
