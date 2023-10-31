@@ -41,8 +41,13 @@ cambiarPass.addEventListener('click', mostrarYocultar);
 
 // Función para mostrar y ocultar el formulario
 function mostrarYocultar() {
-  passwordDelFormulario.classList.replace("oculto", "mostrado");
+  // Almacena la clase actual del elemento
+  const claseActual = passwordDelFormulario.classList.value;
+
+  // Reemplaza la clase actual por la clase opuesta
+  passwordDelFormulario.classList.replace(claseActual, claseActual === "oculto" ? "mostrado" : "oculto");
 }
+
 
 // Función para cambiar la contraseña
 function cambiarContraseñaTemplate(formulario) {
