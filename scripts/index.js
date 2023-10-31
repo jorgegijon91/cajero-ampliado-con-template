@@ -22,6 +22,7 @@ const saldoTemplate = document.getElementById("saldo");
 const passwordDelFormulario = document.getElementById('passwordDelFormulario');
 const pinInput = document.getElementById('pinInput');
 const mensajeResultante = document.getElementById('mensajeResultante');
+const cambiarPass = document.getElementById('cambiarPassword');
 
 // Agrega manejadores de eventos de clic a los botones
 depositarBtn.addEventListener("click", depositar);
@@ -34,6 +35,12 @@ salirBtn.addEventListener("click", () => {
 
 // Cambiar contraseña aplicado al template: intro y click
 passwordDelFormulario.addEventListener('submit', cambiarContraseñaTemplate);
+cambiarPass.addEventListener('click', mostrarYocultar);
+
+// Función para mostrar y ocultar el formulario
+function mostrarYocultar(){
+  passwordDelFormulario.classList.toggle('mostrado');
+}
   
 // Función para cambiar la contraseña
 function cambiarContraseñaTemplate(formulario){
